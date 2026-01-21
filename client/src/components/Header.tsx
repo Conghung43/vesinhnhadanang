@@ -59,9 +59,9 @@ export function Header() {
 
         {/* Desktop CTA */}
         <div className="hidden lg:flex items-center gap-4">
-          <a href="tel:0912345678" className="flex items-center gap-2 font-bold text-primary hover:text-primary/80 transition-colors">
+          <a href="tel:0912553748" className="flex items-center gap-2 font-bold text-primary hover:text-primary/80 transition-colors">
             <Phone size={18} />
-            <span>0912.345.678</span>
+            <span>0912.553.748</span>
           </a>
           <Link to="booking" smooth={true} duration={500}>
             <Button className="rounded-full px-6 font-bold bg-secondary hover:bg-secondary/90 text-white shadow-lg shadow-secondary/20 hover:shadow-secondary/30 transition-all">
@@ -102,9 +102,9 @@ export function Header() {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4">
-                <a href="tel:0912345678" className="flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-100 font-bold text-primary">
+                <a href="tel:0912553748" className="flex items-center justify-center gap-2 py-3 rounded-xl bg-gray-100 font-bold text-primary">
                   <Phone size={18} />
-                  0912.345.678
+                  0912.553.748
                 </a>
                 <Link to="booking" smooth={true} duration={500} onClick={() => setMobileMenuOpen(false)}>
                   <Button className="w-full rounded-xl py-6 text-lg font-bold bg-secondary hover:bg-secondary/90 text-white">
