@@ -397,7 +397,7 @@ export default function Home() {
                   <Phone className="w-8 h-8" />
                   <div>
                     <p className="text-sm text-blue-200">Hotline tư vấn 24/7</p>
-                    <p className="text-2xl font-bold">0912.345.678</p>
+                    <p className="text-2xl font-bold">0912.553.748</p>
                   </div>
                 </div>
                 
@@ -405,7 +405,7 @@ export default function Home() {
                   <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center font-bold text-xs">Zalo</div>
                   <div>
                     <p className="text-sm text-blue-200">Chat Zalo</p>
-                    <p className="text-xl font-bold">0912.345.678</p>
+                    <p className="text-xl font-bold">0912.553.748</p>
                   </div>
                 </div>
               </div>
@@ -450,7 +450,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span>0912.345.678</span>
+                <span>0912.553.748</span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
