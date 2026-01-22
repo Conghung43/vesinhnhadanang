@@ -245,6 +245,184 @@ heroku run npm run db:push
 3. Build command: `npm run build`
 4. Start command: `npm start`
 
+### Deploy lên GitHub Pages (Static Frontend Only)
+
+**⚠️ Lưu ý quan trọng**: 
+- GitHub Pages chỉ host **frontend tĩnh** (HTML/CSS/JS)
+- **Backend API không chạy được** trên GitHub Pages
+- Phù hợp cho: demo giao diện, landing page, hoặc frontend kết nối API bên ngoài
+
+#### 📦 Files được deploy
+
+GitHub Pages sẽ sử dụng các files trong thư mục `dist/public/` sau khi build:
+- `index.html` - Trang HTML chính
+- `assets/*.js` - JavaScript đã được bundle
+- `assets/*.css` - CSS đã được bundle  
+- Images và static files khác
+
+#### Bước 1: Thêm script build frontend
+
+Thêm vào `package.json`:
+```json
+{
+  "scripts": {
+    "build:static": "vite build"
+  }
+}
+```
+
+Script này chỉ build frontend (không build backend), tạo ra thư mục `dist/public/`.
+
+#### Bước 2: Cấu hình base path (tùy chọn)
+
+**Chỉ cần nếu repository KHÔNG phải `<username>.github.io`**
+
+Chỉnh sửa `vite.config.ts`, thêm dòng `base`:
+```typescript
+export default defineConfig({
+  base: '/web-ve-sinh/', // ⚠️ Thay bằng tên repository của bạn
+  plugins: [
+    react(),
+    // ... các plugin khác
+  ],
+  // ... các config khác giữ nguyên
+});
+```
+
+Ví dụ: Nếu repo là `github.com/username/my-app` thì `base: '/my-app/'`
+
+#### Bước 3: Build frontend
+
+```bash
+npm run build:static
+```
+
+Kết quả: Thư mục `dist/public/` chứa toàn bộ frontend đã build.
+
+#### Bước 4: Deploy tự động với GitHub Actions
+
+Tạo file `.github/workflows/deploy.yml`:
+
+```yaml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main ]  # Hoặc 'master' tùy branch chính của bạn
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      - name: Install dependencies
+        run: npm ci
+      
+      - name: Build frontend
+        run: npm run build:static
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./dist/public
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+```
+
+#### Bước 5: Cấu hình GitHub Repository
+
+1. Vào repository trên GitHub
+2. **Settings** → **Pages**
+3. **Source**: chọn **GitHub Actions**
+4. Push code lên GitHub (workflow tự động chạy)
+
+Website sẽ có tại: `https://<username>.github.io/<repository-name>/`
+
+#### Deploy thủ công (Alternative Method)
+
+Nếu không dùng GitHub Actions:
+
+```bash
+# Cài đặt gh-pages package
+npm install -D gh-pages
+
+# Thêm script vào package.json
+{
+  "scripts": {
+    "deploy:pages": "npm run build:static && gh-pages -d dist/public"
+  }
+}
+
+# Deploy
+npm run deploy:pages
+```
+
+#### ⚙️ Xử lý Backend API
+
+Vì GitHub Pages không chạy backend, bạn có 3 lựa chọn:
+
+**Option 1: Deploy backend riêng** ⭐ Khuyến nghị
+1. Deploy backend lên Railway/Render/Heroku
+2. Cập nhật API URL trong frontend:
+
+```typescript
+// Ví dụ: client/src/lib/api.ts
+const API_BASE_URL = import.meta.env.PROD 
+  ? 'https://your-backend-api.railway.app' // Backend production URL
+  : 'http://localhost:5000'; // Local development
+
+// Sử dụng trong fetch/axios
+fetch(`${API_BASE_URL}/api/bookings`)
+```
+
+**Option 2: Sử dụng mock data**
+- Chỉ để demo giao diện
+- Không có chức năng backend thực tế
+- Phù hợp cho portfolio/showcase
+
+**Option 3: Serverless Functions**
+- Deploy lên Vercel/Netlify (có hỗ trợ serverless)
+- Viết lại API endpoints thành serverless functions
+
+#### 📊 So sánh các platform deployment
+
+| Platform | Frontend | Backend | Database | Chi phí | Phù hợp cho |
+|----------|----------|---------|----------|---------|-------------|
+| **GitHub Pages** | ✅ | ❌ | ❌ | Miễn phí | Demo UI, Landing page |
+| **Vercel** | ✅ | ✅ Serverless | ❌ | Free tier | JAMstack, Next.js |
+| **Netlify** | ✅ | ✅ Serverless | ❌ | Free tier | JAMstack, Static sites |
+| **Railway** | ✅ | ✅ Full | ✅ | Free tier | Full-stack apps |
+| **Render** | ✅ | ✅ Full | ✅ | Free tier | Full-stack apps |
+| **Heroku** | ✅ | ✅ Full | ✅ | Trả phí | Production apps |
+
+**💡 Khuyến nghị cho project này:**
+- **Demo/Portfolio**: GitHub Pages (frontend) + Railway (backend + DB)
+- **Production**: Railway/Render/Heroku (full-stack)
+- **Chi phí 0đ**: GitHub Pages (frontend) + Railway Free tier (backend)
+
 ## 🔧 Scripts có sẵn
 
 | Script | Mô tả |
