@@ -424,7 +424,7 @@ export default function Home() {
           <div>
             <div className="flex items-center gap-2 mb-6 text-white">
               <Sparkles size={24} className="text-primary" />
-              <h3 className="font-display font-bold text-xl">CLEAN <span className="text-secondary">PRO</span></h3>
+              <h3 className="font-display font-bold text-xl"><span className="text-white">CLEAN</span> <span className="text-secondary">PRO</span></h3>
             </div>
             <p className="mb-6 text-sm leading-relaxed opacity-80">
               Đơn vị cung cấp dịch vụ vệ sinh nhà uy tín, chuyên nghiệp hàng đầu. Cam kết mang lại sự hài lòng tuyệt đối cho khách hàng.
@@ -444,10 +444,10 @@ export default function Home() {
           <div>
             <h4 className="text-white font-bold text-lg mb-6">Liên hệ</h4>
             <ul className="space-y-4 text-sm">
-              <li className="flex items-start gap-3">
+              {/* <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0" />
-                <span>Số 123 Đường ABC, Quận Cầu Giấy, TP. Hà Nội</span>
-              </li>
+                <span>TP. Đà Nẵng</span>
+              </li> */}
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
                 <span>0912.553.748</span>
