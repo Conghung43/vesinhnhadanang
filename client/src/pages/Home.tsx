@@ -454,7 +454,7 @@ export default function Home() {
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span>lienhe@cleanpro.vn</span>
+                <span>tranvanngoc040305@gmail.com</span>
               </li>
             </ul>
           </div>
