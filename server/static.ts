@@ -10,10 +10,19 @@ export function serveStatic(app: Express) {
     );
   }
 
+  // Serve static files at the base path
+  app.use("/vesinhnhadanang", express.static(distPath));
+
+  // Also serve at root for convenience (optional)
   app.use(express.static(distPath));
 
-  // fall through to index.html if the file doesn't exist
-  app.use("/{*path}", (_req, res) => {
+  // Handle SPA fallback for the base path
+  app.use("/vesinhnhadanang/*", (_req, res) => {
+    res.sendFile(path.resolve(distPath, "index.html"));
+  });
+
+  // fall through to index.html if the file doesn't exist (root fallback)
+  app.use("*", (_req, res) => {
     res.sendFile(path.resolve(distPath, "index.html"));
   });
 }
