@@ -306,10 +306,10 @@ export default function Home() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { title: "Theo giờ", price: "80k - 100k", unit: "vnđ/giờ", features: ["Tối thiểu 2 giờ", "Không bao gồm dụng cụ", "Linh hoạt thời gian"] },
+              { title: "Theo giờ", price: "80k - 140k", unit: "vnđ/giờ", features: ["Tối thiểu 2 giờ", "Không bao gồm dụng cụ", "Linh hoạt thời gian"] },
               { title: "Trọn gói", price: "9k - 18k", unit: "vnđ/m²", features: ["Bao gồm dụng cụ", "Máy hút bụi công nghiệp", "Làm sạch chuyên sâu"], highlight: true },
               { title: "Văn phòng", price: "8k - 16k", unit: "vnđ/m²", features: ["Hợp đồng định kỳ", "Xuất hóa đơn VAT", "Nhân viên cố định"] },
-              { title: "Phòng trọ", price: "180k - 350k", unit: "vnđ/phòng", features: ["Dưới 25m²", "Vệ sinh toilet", "Lau dọn nội thất"] },
+              { title: "Phòng trọ", price: "100k - 180k", unit: "vnđ/phòng", features: ["Dưới 25m²", "Vệ sinh toilet", "Lau dọn nội thất"] },
             ].map((plan, idx) => (
               <motion.div
                 key={idx}
