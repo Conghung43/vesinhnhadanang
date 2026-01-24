@@ -4,6 +4,8 @@ import { Link } from "react-scroll";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
+const logoUrl = new URL("/images/logo.png", import.meta.env.BASE_URL).toString();
+
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -32,7 +34,7 @@ export function Header() {
       <div className="container-width flex items-center justify-between">
         {/* Logo */}
         <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-          <img src="/images/logo.png" alt="Logo" className="h-8 w-auto rounded-lg" />
+          <img src={logoUrl} alt="Logo" className="h-8 w-auto rounded-lg" />
           <div className="leading-tight">
             <h1 className="font-display font-bold text-xl text-primary tracking-tight">CLEAN <span className="text-secondary">PRO</span></h1>
             <p className="text-[10px] text-muted-foreground font-semibold tracking-wider uppercase">Vệ sinh nhà</p>
