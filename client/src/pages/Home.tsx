@@ -352,21 +352,21 @@ export default function Home() {
           <div className="grid md:grid-cols-3 gap-8">
             <ReviewCard 
               name="Chị Lan" 
-              role="Chung cư Times City"
+              role="Chung cư FPT Đà Nẵng"
               rating={5}
               content="Dịch vụ rất tốt, nhân viên đến đúng giờ và làm việc rất nhiệt tình. Nhà mình có trẻ con nên rất quan trọng việc dùng hóa chất an toàn, bên này đáp ứng được điều đó."
               delay={0}
             />
             <ReviewCard 
               name="Anh Tuấn" 
-              role="Văn phòng Startup Cầu Giấy"
+              role="Văn phòng Startup Cẩm Lệ"
               rating={5}
               content="Đã ký hợp đồng vệ sinh định kỳ cho văn phòng công ty. Các bạn làm việc chuyên nghiệp, nhanh gọn, không ảnh hưởng đến giờ làm việc của nhân viên."
               delay={0.2}
             />
             <ReviewCard 
               name="Bạn Mai" 
-              role="Sinh viên ĐH Quốc Gia"
+              role="Sinh viên ĐH Đà Nẵng"
               rating={4}
               content="Giá cả hợp lý cho sinh viên tụi mình khi chuyển trọ. Dọn sạch sẽ từ A-Z, mình chỉ việc xách vali vào ở thôi. Sẽ ủng hộ dài dài."
               delay={0.4}
