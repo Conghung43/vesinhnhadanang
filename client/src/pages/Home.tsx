@@ -86,7 +86,7 @@ export default function Home() {
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-4 border-white">
               {/* Living room cleaning image from Unsplash */}
               <img 
-                src="https://pixabay.com/get/ge448a0f338002a1e5dfe7d4967c8b19df5bca5e37515fb514bcc54e249ced579212c455325f9eb657c35dd3358b840806b38e1ba74792bc27c1530331ee26249_1280.jpg" 
+                src={`${import.meta.env.BASE_URL}images/image2.jpg`} 
                 alt="Professional Cleaning Service" 
                 className="w-full h-auto object-cover aspect-[4/3]"
               />
@@ -237,7 +237,7 @@ export default function Home() {
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
               {/* Cleaners working image */}
               <img 
-                src="https://pixabay.com/get/gc4874454d74da5d721c2d0e94f3a3e67971522501d4389f62497e9c01bebf7413de43bf54b0b72b3fe0f748eca072c1f1490a887f4a2324e55d704e02cbba18e_1280.jpg" 
+                src={`${import.meta.env.BASE_URL}images/image1.jpg`} 
                 alt="Our dedicated team" 
                 className="w-full h-full object-cover aspect-square"
               />
