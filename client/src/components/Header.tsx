@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Menu, X, Phone, Sparkles } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Link } from "react-scroll";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
@@ -31,13 +31,11 @@ export function Header() {
     >
       <div className="container-width flex items-center justify-between">
         {/* Logo */}
-        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
-          <div className="bg-primary rounded-lg p-2 text-white">
-            <Sparkles size={24} fill="currentColor" />
-          </div>
+        <div className="flex items-center gap-3 cursor-pointer" onClick={() => window.scrollTo(0,0)}>
+          <img src="/images/logo.png" alt="Logo" className="h-8 w-auto rounded-lg" />
           <div className="leading-tight">
             <h1 className="font-display font-bold text-xl text-primary tracking-tight">CLEAN <span className="text-secondary">PRO</span></h1>
-            <p className="text-[10px] text-muted-foreground font-semibold tracking-wider uppercase">Vệ sinh công nghiệp</p>
+            <p className="text-[10px] text-muted-foreground font-semibold tracking-wider uppercase">Vệ sinh nhà</p>
           </div>
         </div>
 
