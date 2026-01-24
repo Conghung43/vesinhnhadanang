@@ -4,7 +4,8 @@ import { Link } from "react-scroll";
 import { Button } from "@/components/ui/button";
 import { motion, AnimatePresence } from "framer-motion";
 
-const logoUrl = new URL("/images/logo.png", import.meta.env.BASE_URL).toString();
+// Use Vite base path for GitHub Pages subpath
+const logoUrl = `${import.meta.env.BASE_URL}images/logo.png`;
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
