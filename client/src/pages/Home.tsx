@@ -427,7 +427,7 @@ export default function Home() {
               <h3 className="font-display font-bold text-xl">CLEAN <span className="text-secondary">PRO</span></h3>
             </div>
             <p className="mb-6 text-sm leading-relaxed opacity-80">
-              Đơn vị cung cấp dịch vụ vệ sinh công nghiệp uy tín, chuyên nghiệp hàng đầu. Cam kết mang lại sự hài lòng tuyệt đối cho khách hàng.
+              Đơn vị cung cấp dịch vụ vệ sinh nhà uy tín, chuyên nghiệp hàng đầu. Cam kết mang lại sự hài lòng tuyệt đối cho khách hàng.
             </p>
           </div>
 
@@ -436,7 +436,7 @@ export default function Home() {
             <ul className="space-y-3 text-sm">
               <li><a href="#" className="hover:text-primary transition-colors">Vệ sinh nhà ở</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Vệ sinh văn phòng</a></li>
-              <li><a href="#" className="hover:text-primary transition-colors">Vệ sinh công nghiệp</a></li>
+              <li><a href="#" className="hover:text-primary transition-colors">Vệ sinh nhà trọ</a></li>
               <li><a href="#" className="hover:text-primary transition-colors">Giặt ghế sofa, thảm</a></li>
             </ul>
           </div>
