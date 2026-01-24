@@ -462,7 +462,7 @@ export default function Home() {
           <div>
             <h4 className="text-white font-bold text-lg mb-6">Khu vực phục vụ</h4>
             <div className="flex flex-wrap gap-2">
-              {['Cầu Giấy', 'Ba Đình', 'Đống Đa', 'Thanh Xuân', 'Hoàn Kiếm', 'Hai Bà Trưng', 'Hà Đông', 'Nam Từ Liêm'].map(area => (
+              {['Điện bàn đông', 'Ngũ hành sơn', 'Hải châu', 'Sơn trà', 'Cẩm lệ', 'Thanh khê', 'Liên chiểu'].map(area => (
                 <span key={area} className="bg-slate-800 px-3 py-1 rounded-full text-xs hover:bg-slate-700 transition-colors cursor-default">
                   {area}
                 </span>
