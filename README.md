@@ -68,8 +68,8 @@ curl -X POST http://localhost:3002/api/bookings \
   -H "Content-Type: application/json" \
   -d '{
     "name": "Nguyễn Văn A",
-    "phone": "0912345678",
-    "address": "123 Đường ABC, Hà Nội",
+    "phone": "0912553748",
+    "address": "123 Đường ABC, Đà Nẵng",
     "serviceType": "Vệ sinh nhà ở",
     "preferredTime": "Sáng thứ 7 tuần này",
     "notes": "Cần dọn dẹp tổng thể"

@@ -58,7 +58,7 @@ export default function Home() {
               <a href="#booking" className="px-8 py-4 bg-accent hover:bg-accent/90 text-white font-bold rounded-xl shadow-lg shadow-accent/25 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 transition-all text-center">
                 Đặt lịch Online
               </a>
-              <a href="tel:0912345678" className="px-8 py-4 bg-white border-2 border-primary/10 hover:border-primary text-primary font-bold rounded-xl hover:bg-primary/5 transition-all text-center">
+              <a href="tel:0912553748" className="px-8 py-4 bg-white border-2 border-primary/10 hover:border-primary text-primary font-bold rounded-xl hover:bg-primary/5 transition-all text-center">
                 Gọi tư vấn miễn phí
               </a>
             </div>
