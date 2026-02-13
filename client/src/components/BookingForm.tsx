@@ -10,7 +10,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Calendar, CheckCircle } from "lucide-react";
 import { z } from "zod";
 import { motion } from "framer-motion";
-import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 
@@ -53,22 +52,30 @@ export function BookingForm() {
 
     try {
       setIsEmailSending(true);
-      await emailjs.send(
-        emailServiceId,
-        emailTemplateId,
-        {
-          to_email: "conghung43@gmail.com",
-          name: data.name,
-          phone: data.phone,
-          address: data.address,
-          service_type: data.serviceType,
-          preferred_time: data.preferredTime,
-          notes: data.notes || "Không có",
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          publicKey: emailPublicKey,
-        }
-      );
+        body: JSON.stringify({
+          service_id: emailServiceId,
+          template_id: emailTemplateId,
+          user_id: emailPublicKey,
+          template_params: {
+            to_email: "conghung43@gmail.com",
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            service_type: data.serviceType,
+            preferred_time: data.preferredTime,
+            notes: data.notes || "Không có",
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("EmailJS request failed");
+      }
     } catch (error) {
       toast({
         title: "Không gửi được email",
