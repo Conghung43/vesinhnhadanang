@@ -1,7 +1,6 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { insertBookingSchema } from "@shared/schema";
-import { useCreateBooking } from "@/hooks/use-bookings";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -20,9 +19,9 @@ const formSchema = insertBookingSchema.extend({
 });
 
 export function BookingForm() {
-  const { mutate, isPending, isSuccess } = useCreateBooking();
   const { toast } = useToast();
   const [isEmailSending, setIsEmailSending] = useState(false);
+  const [isSuccess, setIsSuccess] = useState(false);
   
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -76,17 +75,24 @@ export function BookingForm() {
       if (!response.ok) {
         throw new Error("EmailJS request failed");
       }
+
+      // Success! Show success message
+      setIsSuccess(true);
+      toast({
+        title: "Đặt lịch thành công!",
+        description: "Chúng tôi sẽ liên hệ lại với bạn trong vòng 30 phút.",
+        variant: "default", 
+        className: "bg-green-600 text-white border-none"
+      });
     } catch (error) {
       toast({
-        title: "Không gửi được email",
-        description: "Đã ghi nhận yêu cầu, nhưng gửi email thất bại. Vui lòng thử lại.",
+        title: "Lỗi đặt lịch",
+        description: "Không thể gửi yêu cầu. Vui lòng thử lại sau.",
         variant: "destructive",
       });
     } finally {
       setIsEmailSending(false);
     }
-
-    mutate(data);
   }
 
   if (isSuccess) {
@@ -230,10 +236,10 @@ export function BookingForm() {
 
           <Button 
             type="submit" 
-            disabled={isPending || isEmailSending}
+            disabled={isEmailSending}
             className="w-full h-14 text-lg font-bold rounded-xl bg-accent hover:bg-accent/90 shadow-lg shadow-accent/20 hover:shadow-xl hover:shadow-accent/30 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200"
           >
-            {isPending || isEmailSending ? (
+            {isEmailSending ? (
               <>
                 <Loader2 className="mr-2 h-5 w-5 animate-spin" />
                 Đang gửi...
