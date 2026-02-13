@@ -12,7 +12,6 @@ import { z } from "zod";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import emailjs from "@emailjs/browser";
 
 const formSchema = insertBookingSchema.extend({
   phone: z.string().min(10, "Số điện thoại không hợp lệ"),
@@ -53,28 +52,34 @@ export function BookingForm() {
 
     try {
       setIsEmailSending(true);
-      await emailjs.send(
-        emailServiceId,
-        emailTemplateId,
-        {
-          to_email: "conghung43@gmail.com",
-          name: data.name,
-          phone: data.phone,
-          address: data.address,
-          service_type: data.serviceType,
-          preferred_time: data.preferredTime,
-          notes: data.notes || "Không có",
+      const response = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-        {
-          publicKey: emailPublicKey,
-        }
-      );
+        body: JSON.stringify({
+          service_id: emailServiceId,
+          template_id: emailTemplateId,
+          user_id: emailPublicKey,
+          template_params: {
+            to_email: "conghung43@gmail.com",
+            name: data.name,
+            phone: data.phone,
+            address: data.address,
+            service_type: data.serviceType,
+            preferred_time: data.preferredTime,
+            notes: data.notes || "Không có",
+          },
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("EmailJS request failed");
+      }
     } catch (error) {
-      console.error("EmailJS send failed", error);
       toast({
         title: "Không gửi được email",
-        description:
-          error instanceof Error ? error.message : "Đã ghi nhận yêu cầu, nhưng gửi email thất bại. Vui lòng thử lại.",
+        description: "Đã ghi nhận yêu cầu, nhưng gửi email thất bại. Vui lòng thử lại.",
         variant: "destructive",
       });
     } finally {
